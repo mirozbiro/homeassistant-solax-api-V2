@@ -1,9 +1,9 @@
 - platform: rest
   name: "Solax API"
   resource: !secret solax00
-  method: GET
-  scan_interval: 30
-  value_template: 'OK'
+  method: POST
+  scan_interval: 3000 #Solax Cloud has a limitation of once per 5 minutes refresh data.
+  value_template: 'INIT' #FIXME
   json_attributes_path: "$.result"
   json_attributes:
     - acpower
