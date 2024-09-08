@@ -1,4 +1,5 @@
 **SolaX cloud for Home assistant**
+*Based on version 2 of the API*
 
 read data from Solax cloud via official web API
 
@@ -14,10 +15,8 @@ Install:
 - edit configuration (see configuration.yaml.sample)
 
 
-
-Update:
-2023-09-05 split sensors config
-
-Docs version 6.1 (2022-06-10) https://www.solaxcloud.com/phoebus/resource/files/userGuide/Solax_API.pdf
+[Official API Documentation v1.1](https://global.solaxcloud.com/blue/4/user_api/2024/SolaXCloud_User_API_V2.pdf)
 
 ![Dashboard](https://github.com/lowprize/homeassistant-solax-api/blob/main/misc/dashboard.png)
+
+(c) GPL V3
