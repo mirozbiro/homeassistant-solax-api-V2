@@ -233,7 +233,7 @@
 
   # Consume power is not provided by Solax and calculated
     - name: "Solax consume energy"
-      value_template: "{{ value_json['result']['acpower'] | float(0) - value_json['result']['feedinpower']
+      value_template: "{{ value_json['result']['acpower'] | float(0) - value_json['result']['feedinpower'] | float(0) }}"
       unit_of_measurement: "W"
       device_class: energy
       state_class: total
