@@ -381,14 +381,14 @@
       state_class: total
       icon: mdi:transmission-tower-import
 
-    - name: "Solax inverter power total"
+    - name: "Solax inverter energy total"
       value_template: "{{ value_json['result']['acenergyin'] }}"
       unit_of_measurement: "kWh"
       device_class: energy
       state_class: total
       icon: mdi:solar-power-power-variant-outline
 
-    - name: "Solax PV powery total"
+    - name: "Solax PV energy total"
       value_template: "{{ value_json['result']['pvenergy'] }}"
       unit_of_measurement: "kWH"
       device_class: energy
