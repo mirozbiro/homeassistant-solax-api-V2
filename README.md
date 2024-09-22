@@ -3,7 +3,7 @@
 
 This Home Assistant reads data from Solax cloud via official API V2 based on document 1.1. I started it to improve the V1 from which this is a fork. But I ended up changing a lot.
 Differences with lowprize is that these are all sensors under RESTful API, and grouped. The sensors have the full config of type of measurement so they can be used in the energy overview of Home Assistant.
-
+Sensors don´t return 0.00 when there is no value. If there is no data, it should leave a gap and let HA fix it. Using 0 means that 0 is measured, that is not the case.
 Tested on X3 Gen3
 
 Requirements
