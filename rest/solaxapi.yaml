@@ -372,14 +372,14 @@
       unit_of_measurement: "kWh"
       device_class: energy
       state_class: total
-      icon: mdi:transmission-tower-import
+      icon: mdi:transmission-tower-export
 
     - name: "Solax grid export total"
       value_template: "{{ value_json['result']['feedinenergy'] | float }}"
       unit_of_measurement: "kWh"
       device_class: energy
       state_class: total
-      icon: mdi:transmission-tower-export
+      icon: mdi:transmission-tower-import
 
     - name: "Solax inverter power total"
       value_template: "{{ value_json['result']['acenergyin'] }}"
@@ -388,7 +388,7 @@
       state_class: total
       icon: mdi:solar-power-power-variant-outline
 
-    - name: "Solax PV power total"
+    - name: "Solax PV powery total"
       value_template: "{{ value_json['result']['pvenergy'] }}"
       unit_of_measurement: "kWH"
       device_class: energy
