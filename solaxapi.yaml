@@ -1,7 +1,7 @@
 - resource: https://global.solaxcloud.com/api/v2/dataAccess/realtimeInfo/get
-  method: POST
+  method: POST	
   headers:
-    Content-Type: application/json
+    Content-Type: application/json  
     tokenId: !secret SolaxTokenId
   payload: !secret SolaxWifiSnPayload
   scan_interval: 300 #Cloud updates once per 5 minutes.
@@ -10,15 +10,15 @@
   sensor:
 
   #Status
-    - name: "Solax Cloud connection status"
-      value_template: "{{ value_json['exception'] }}"
+    - name: "Solax cloud connection status"
+      value_template: "{{ value_json['exception'] }}"    
       icon: >-
         {% if value_json['success'] == true %}mdi:cloud-check-outline
         {% else %}mdi:cloud-mdi-cancel-outline
         {% endif %}
 
     - name: "Solax cloud last update"
-      value_template: "{{ value_json['result']['uploadTime'] }}"
+      value_template: "{{ value_json['result']['uploadTime'] }}"      
       #device_class: date
       icon: mdi:calendar-range
 
@@ -47,7 +47,7 @@
           133: 'TOU-Discharging'
         } %}
         {{ inverterStatusMap.get(value_json['result']['inverterStatus'] | int, 'Unknown status') }}
-
+      
   # Solar panel output to inverter (DC)
     - name: "Solax PV1 input power"
       value_template: "{{ value_json['result']['powerdc1'] | float }}"
@@ -85,6 +85,7 @@
       state_class: measurement
       icon: mdi:solar-power
 
+
   #Inverter output
     - name: "Solax inverter output power"
       value_template: "{{ value_json['result']['acpower'] | float }}"
@@ -99,14 +100,14 @@
       unit_of_measurement: "W"
       device_class: power
       state_class: measurement
-      icon: mdi:transmission-tower-export
+      icon: mdi:transmission-tower-export 
 
   #Consume power is not provided by Solax and calculated
-    - name: "Solax consume energy"
+    - name: "Solax consume power"
       value_template: "{{ value_json['result']['acpower'] | float(0) - value_json['result']['feedinpower'] | float(0) }}"
       unit_of_measurement: "W"
-      device_class: energy
-      state_class: total
+      device_class: power
+      state_class: measurement
       icon: mdi:home-lightning-bolt-outline
 
   #Battery
@@ -158,33 +159,33 @@
       state_class: measurement
 
   #Inverter statistics
-    - name: "Solax yield today"
+    - name: "Solax yield energy today"
       value_template: "{{ value_json['result']['yieldtoday'] | float }}"
       unit_of_measurement: "kWh"
       device_class: energy
       state_class: total
       icon: mdi:solar-power-variant-outline
 
-    - name: "Solax yield total"
+    - name: "Solax yield energy total"
       value_template: "{{ value_json['result']['yieldtotal'] | float }}"
       unit_of_measurement: "kWh"
       device_class: energy
       state_class: total
       icon: mdi:solar-power-variant-outline
 
-    - name: "Solax grid import total"
+    - name: "Solax grid energy import total"
       value_template: "{{ value_json['result']['consumeenergy'] | float }}"
       unit_of_measurement: "kWh"
       device_class: energy
       state_class: total
       icon: mdi:transmission-tower-export
 
-    - name: "Solax grid export total"
+    - name: "Solax grid energy export total"
       value_template: "{{ value_json['result']['feedinenergy'] | float }}"
       unit_of_measurement: "kWh"
       device_class: energy
       state_class: total
-      icon: mdi:transmission-tower-import
+      icon: mdi:transmission-tower-export
 
   #Meter 2
     - name: "Solax meter 2 power"
