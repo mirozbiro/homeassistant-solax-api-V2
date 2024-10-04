@@ -110,6 +110,15 @@
       state_class: measurement
       icon: mdi:home-lightning-bolt-outline
 
+  #Meter 2
+    - name: "Solax meter 2 power"
+      value_template: "{{ value_json['result']['feedinpowerM2'] | float }}"
+      unit_of_measurement: "W"
+      device_class: power
+      state_class: measurement
+      icon: mdi:transmission-tower-export
+
+
   #Battery
     - name: "Solax battery status"
       value_template: >-
@@ -187,8 +196,3 @@
       state_class: total
       icon: mdi:transmission-tower-export
 
-  #Meter 2
-    - name: "Solax meter 2 power"
-      value_template: "{{ value_json['result']['feedinpowerM2'] | float }}"
-      unit_of_measurement: "W"
-      device_class: power
