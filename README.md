@@ -9,7 +9,7 @@ This Home Assistant integration fetches data from the SolaX Cloud using the offi
 
 - Unlike the original V1 version, this one groups all sensors under a RESTful API.
 - The sensors are fully configured with measurement types, making them compatible with Home Assistant’s energy monitoring features.
-- Sensors do not return `0.00` when no data is available. Instead, they leave gaps, allowing Home Assistant to handle the absence of data correctly. A `0` reading would inaccurately indicate a measured value of zero, which is not the case.
+- Icons indicate 
 
 ### Requirements:
 
@@ -26,6 +26,33 @@ This Home Assistant integration fetches data from the SolaX Cloud using the offi
 
 - The **SolaX Cloud site** displays the total energy yield of the entire site, while the API fetches data directly from the inverter. This can lead to differences in the reported totals, especially if a new inverter was installed or there were issues during the initial setup.
 - For the most accurate and reliable energy data, it is recommended to pull information directly from the energy meter. The energy meter provides certified and precise readings, ensuring you get the correct data. Using the inverter's data might lead to discrepancies in total yield values.
+
+### Sensors :
+| Naam                          | Unit    |
+|-------------------------------|---------|
+| Solax battery capacity         | %       |
+| Solax battery power            | W       |
+| Solax battery status           | Status  |
+| Solax cloud connection status  | Status  |
+| Solax cloud last update        | DateTime|
+| Solax consume power            | W       |
+| Solax EPS A phase active power | W       |
+| Solax EPS B phase active power | W       |
+| Solax EPS C phase active power | W       |
+| Solax grid energy export total | kWh     |
+| Solax grid energy import total | kWh     |
+| Solax grid export power        | W       |
+| Solax inverter output power    | W       |
+| Solax inverter status          | Status  |
+| Solax meter 2 power           | W       |
+| Solax PV total input power     | W       |
+| Solax PV1 input power          | W       |
+| Solax PV2 input power          | W       |
+| Solax PV3 input power          | W       |
+| Solax PV4 input power          | W       |
+| Solax yield energy today       | kWh     |
+| Solax yield energy total       | kWh     |
+
 
 ### Official API Documentation:
 
