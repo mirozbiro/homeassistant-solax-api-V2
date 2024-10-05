@@ -18,8 +18,8 @@
         {% endif %}
 
     - name: "Solax cloud last update"
-      value_template: "{{ value_json['result']['uploadTime'] }}"      
-      #device_class: date
+      value_template: "{{ strptime(value_json['result']['uploadTime'], '%Y-%m-%d %H:%M:%S').replace(tzinfo=now().tzinfo) }}"
+      device_class: timestamp
       icon: mdi:calendar-range
 
   #Inverter status
@@ -50,28 +50,28 @@
       
   # Solar panel output to inverter (DC)
     - name: "Solax PV1 input power"
-      value_template: "{{ value_json['result']['powerdc1'] | float }}"
+      value_template: "{{ value_json['result']['powerdc1'] | float(0) }}"
       unit_of_measurement: "W"
       device_class: power
       state_class: measurement
       icon: mdi:solar-power
 
     - name: "Solax PV2 input power"
-      value_template: "{{ value_json['result']['powerdc2'] | float }}"
+      value_template: "{{ value_json['result']['powerdc2'] | float(0) }}"
       unit_of_measurement: "W"
       device_class: power
       state_class: measurement
       icon: mdi:solar-power
 
     - name: "Solax PV3 input power"
-      value_template: "{{ value_json['result']['powerdc3'] | float }}"
+      value_template: "{{ value_json['result']['powerdc3'] |  float(0) }}"
       unit_of_measurement: "W"
       device_class: power
       state_class: measurement
       icon: mdi:solar-power
 
     - name: "Solax PV4 input power"
-      value_template: "{{ value_json['result']['powerdc4'] | float }}"
+      value_template: "{{ value_json['result']['powerdc4'] | float(0) }}"
       unit_of_measurement: "W"
       device_class: power
       state_class: measurement
