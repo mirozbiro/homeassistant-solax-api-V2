@@ -3,17 +3,17 @@
 
 ### SolaX Cloud Integration for Home Assistant (Based on API V2)
 
-This Home Assistant integration fetches data from the SolaX Cloud using the official API V2, as described in the 1.2 API documentation. It was initially developed as an improvement over the API V1 integration, from which it was forked. However, several significant changes have been made.
+This Home Assistant integration fetches data from the SolaX Cloud using the official API V2, as described in the 1.2 API documentation. It was initially developed as an improvement over the [API V1](https://github.com/lowprize/homeassistant-solax-api) integration from [lowprice](https://github.com/lowprize), from which it was forked. However, several significant changes have been made that a new repository was a logic choice.
 
-### Key Differences:
+### Features:
 
-- Unlike the original V1 version, this one groups all sensors under a RESTful API.
 - The sensors are fully configured with measurement types, making them compatible with Home Assistant’s energy monitoring features.
-- Icons indicate 
-
+- Icons indicate the status of a device.
+- Difference witht the [original version](https://github.com/lowprize/homeassistant-solax-api/), is the use of a RESTful API.
+  
 ### Requirements:
 
-- **Inverter Serial Number** (Refer to the official SolaX documentation below for guidance)
+- **Inverter Serial Number:** Can be found on the [Solax Cloud](www.solaxcloud.com). The serial number of the communication dongle is needed.
 - **Token ID:** [Generate here](https://www.solaxcloud.com/#/api)
 
 ### Installation:
@@ -28,6 +28,7 @@ This Home Assistant integration fetches data from the SolaX Cloud using the offi
 - For the most accurate and reliable energy data, it is recommended to pull information directly from the energy meter. The energy meter provides certified and precise readings, ensuring you get the correct data. Using the inverter's data might lead to discrepancies in total yield values.
 
 ### Sensors :
+
 | Naam                          | Unit    |
 |-------------------------------|---------|
 | Solax battery capacity         | %       |
