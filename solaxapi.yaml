@@ -18,7 +18,7 @@
         {% endif %}
 
     - name: "Solax cloud last update"
-      value_template: "{{ strptime(value_json['result']['uploadTime'], '%Y-%m-%d %H:%M:%S').replace(tzinfo=now().tzinfo) }}"
+      value_template: "{{ strptime(value_json['result'][0]['uploadTime'], '%Y-%m-%d %H:%M:%S').replace(tzinfo=now().tzinfo) }}"
       device_class: timestamp
       icon: mdi:calendar-range
 
@@ -46,32 +46,32 @@
           132: 'TOU-Charging',
           133: 'TOU-Discharging'
         } %}
-        {{ inverterStatusMap.get(value_json['result']['inverterStatus'] | int, 'Unknown status') }}
+        {{ inverterStatusMap.get(value_json['result'][0]['inverterStatus'] | int, 'Unknown status') }}
       
   # Solar panel output to inverter (DC)
     - name: "Solax PV1 input power"
-      value_template: "{{ value_json['result']['powerdc1'] | float(0) }}"
+      value_template: "{{ value_json['result'][0]['powerdc1'] | float(0) }}"
       unit_of_measurement: "W"
       device_class: power
       state_class: measurement
       icon: mdi:solar-power
 
     - name: "Solax PV2 input power"
-      value_template: "{{ value_json['result']['powerdc2'] | float(0) }}"
+      value_template: "{{ value_json['result'][0]['powerdc2'] | float(0) }}"
       unit_of_measurement: "W"
       device_class: power
       state_class: measurement
       icon: mdi:solar-power
 
     - name: "Solax PV3 input power"
-      value_template: "{{ value_json['result']['powerdc3'] |  float(0) }}"
+      value_template: "{{ value_json['result'][0]['powerdc3'] |  float(0) }}"
       unit_of_measurement: "W"
       device_class: power
       state_class: measurement
       icon: mdi:solar-power
 
     - name: "Solax PV4 input power"
-      value_template: "{{ value_json['result']['powerdc4'] | float(0) }}"
+      value_template: "{{ value_json['result'][0]['powerdc4'] | float(0) }}"
       unit_of_measurement: "W"
       device_class: power
       state_class: measurement
@@ -79,7 +79,7 @@
 
     # Solax doesn't supply a total of all PV arrays
     - name: "Solax PV total input power"
-      value_template: "{{ value_json['result']['powerdc1'] | float(0) + value_json['result']['powerdc2'] | float(0) + value_json['result']['powerdc3'] | float(0) + value_json['result']['powerdc4'] | float(0) }}"
+      value_template: "{{ value_json['result'][0]['powerdc1'] | float(0) + value_json['result'][0]['powerdc2'] | float(0) + value_json['result'][0]['powerdc3'] | float(0) + value_json['result'][0]['powerdc4'] | float(0) }}"
       unit_of_measurement: "W"
       device_class: power
       state_class: measurement
@@ -88,7 +88,7 @@
 
   #Inverter output
     - name: "Solax inverter output power"
-      value_template: "{{ value_json['result']['acpower'] | float }}"
+      value_template: "{{ value_json['result'][0]['acpower'] | float }}"
       unit_of_measurement: "W"
       device_class: power
       state_class: measurement
@@ -96,7 +96,7 @@
 
   #Grid data 
     - name: "Solax grid export power"
-      value_template: "{{ value_json['result']['feedinpower'] | float }}"
+      value_template: "{{ value_json['result'][0]['feedinpower'] | float }}"
       unit_of_measurement: "W"
       device_class: power
       state_class: measurement
@@ -104,7 +104,7 @@
 
   #Consume power is not provided by Solax and calculated
     - name: "Solax consume power"
-      value_template: "{{ value_json['result']['acpower'] | float(0) - value_json['result']['feedinpower'] | float(0) }}"
+      value_template: "{{ value_json['result'][0]['acpower'] | float(0) - value_json['result'][0]['feedinpower'] | float(0) }}"
       unit_of_measurement: "W"
       device_class: power
       state_class: measurement
@@ -112,7 +112,7 @@
 
   #Meter 2
     - name: "Solax meter 2 power"
-      value_template: "{{ value_json['result']['feedinpowerM2'] | float }}"
+      value_template: "{{ value_json['result'][0]['feedinpowerM2'] | float }}"
       unit_of_measurement: "W"
       device_class: power
       state_class: measurement
@@ -127,7 +127,7 @@
           1: 'Fault',
           2: 'Disconnected'
         } %}
-        {{ batStatusMap.get(value_json['result']['batStatus'] | int, 'Unknown status') }}
+        {{ batStatusMap.get(value_json['result'][0]['batStatus'] | int, 'Unknown status') }}
       icon: >-
         {% set batStatus = value_json['result']['batStatus'] | int %}
         {% if batStatus == 0 %}mdi:battery-check
@@ -137,60 +137,60 @@
         {% endif %}
 
     - name: "Solax battery capacity"
-      value_template: "{{ value_json['result']['soc'] | float }}"
+      value_template: "{{ value_json['result'][0]['soc'] | float }}"
       unit_of_measurement: "%"
       state_class: measurement
       device_class: battery
 
     - name: "Solax battery power"
-      value_template: "{{ value_json['result']['batPower'] | float }}"
+      value_template: "{{ value_json['result'][0]['batPower'] | float }}"
       unit_of_measurement: "W"
       device_class: power
       state_class: measurement
       icon: mdi:power-plug-battery-outline
 
     - name: "Solax EPS A phase active power"
-      value_template: "{{ value_json['result']['peps1'] | float }}"
+      value_template: "{{ value_json['result'][0]['peps1'] | float }}"
       unit_of_measurement: "W"
       device_class: power
       state_class: measurement
 
     - name: "Solax EPS B phase active power"
-      value_template: "{{ value_json['result']['peps2'] | float }}"
+      value_template: "{{ value_json['result'][0]['peps2'] | float }}"
       unit_of_measurement: "W"
       device_class: power
       state_class: measurement
 
     - name: "Solax EPS C phase active power"
-      value_template: "{{ value_json['result']['peps3'] | float }}"
+      value_template: "{{ value_json['result'][0]['peps3'] | float }}"
       unit_of_measurement: "W"
       device_class: power
       state_class: measurement
 
   #Inverter statistics
     - name: "Solax yield energy today"
-      value_template: "{{ value_json['result']['yieldtoday'] | float }}"
+      value_template: "{{ value_json['result'][0]['yieldtoday'] | float }}"
       unit_of_measurement: "kWh"
       device_class: energy
       state_class: total
       icon: mdi:solar-power-variant-outline
 
     - name: "Solax yield energy total"
-      value_template: "{{ value_json['result']['yieldtotal'] | float }}"
+      value_template: "{{ value_json['result'][0]['yieldtotal'] | float }}"
       unit_of_measurement: "kWh"
       device_class: energy
       state_class: total
       icon: mdi:solar-power-variant-outline
 
     - name: "Solax grid energy import total"
-      value_template: "{{ value_json['result']['consumeenergy'] | float }}"
+      value_template: "{{ value_json['result'][0]['consumeenergy'] | float }}"
       unit_of_measurement: "kWh"
       device_class: energy
       state_class: total
       icon: mdi:transmission-tower-import
 
     - name: "Solax grid energy export total"
-      value_template: "{{ value_json['result']['feedinenergy'] | float }}"
+      value_template: "{{ value_json['result'][0]['feedinenergy'] | float }}"
       unit_of_measurement: "kWh"
       device_class: energy
       state_class: total
